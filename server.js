@@ -3,10 +3,10 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose');
-const data = require ('./models/data');
+const Data = require ('./models/data');
 
 //Database Connection
-mongoose.connect(process.env.DATABASE_URL,{ 
+mongoose.connect(process.env.DATABASE_URL, { 
       useNewUrlParser: true,
       useUnifiedTopology: true
 });
@@ -29,9 +29,9 @@ app.use(express.urlencoded({extended: true}))
 
 //I
 app.get('/home' , (req,res) => {
-      data.find({}, (error, allData) => {
+      Data.find({}, (error, allData) => {
             res.render('index.ejs' , {
-                  data: allData
+                  Data: allData
             })})});
 
 
@@ -42,13 +42,17 @@ app.get('/home/new' , (req,res) => {
 //D
 //U
 //C
+app.post('/home' , (req,res) => {
+      Data.create(req.body, (error, createdData) => {
+            res.redirect('/home')
+      })});
 
 //E
 //S
 app.get('/home/:id' , (req,res) => {
-      data.findById(req.params.id, (err, foundData) => {
+      Data.findById(req.params.id, (err, foundData) => {
             res.render('show.ejs' , {
-                  data: foundData
+                  Data: foundData
             })})});
 
 
