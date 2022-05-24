@@ -43,11 +43,18 @@ app.get('/home' ,(req,res) => {
 
 
 //N
+app.get('/home/new' , (req,res) => {
+      res.render('new.ejs');
+})
 //D
 //U
 //C
 //E
 //S
+app.get('/home/:indexOfSeedData' , (req,res) => {
+    res.render('show.ejs' , {
+          seedData: seedData[req.params.indexOfSeedData]
+    })});
 
 
 
