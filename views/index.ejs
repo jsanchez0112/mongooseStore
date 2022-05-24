@@ -7,6 +7,18 @@
       <title>Document</title>
 </head>
 <body>
-      
+
+      <h1>Items for sale! </h1>
+      <nav>
+      <a href="/home/new">Add an item!</a>
+      </nav>
+<ul>
+      <% seedData.forEach(seedData => {%>
+            <li>
+                  <a href="/home/<%= seedData._id;%>"><%= seedData.name%></a>
+            </li>
+            <% }) %>
+      </ul>
+
 </body>
 </html>

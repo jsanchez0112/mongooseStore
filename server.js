@@ -4,6 +4,14 @@ const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose');
 const data = require ('./models/data');
+//seed 
+const seedData = require('./models/seed.js');
+app.get('/home/seed' , (req,res) => {
+      data.deleteMany({} , (error, allData) => {});
+      data.create(seedData, (error, data) => {
+            res.redirect('/home');
+      })
+})
 
 //Database Connection
 mongoose.connect(process.env.DATABASE_URL,{ 
@@ -22,7 +30,18 @@ db.on('disconnected' , () => console.log('mongo disconnected'));
 //body parser middleware: give us access to req.body
 app.use(express.urlencoded({extended: true}))
 
+
+
+
+
+
 //I
+app.get('/home' ,(req,res) => {
+      res.render('index.ejs' , {
+      seedData: seedData,
+})});
+
+
 //N
 //D
 //U
