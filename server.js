@@ -22,6 +22,28 @@ db.on('disconnected' , () => console.log('mongo disconnected'));
 //body parser middleware: give us access to req.body
 app.use(express.urlencoded({extended: true}))
 
+//I
+//N
+//D
+//U
+//C
+//E
+//S
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Listener
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`server is listening on port ${PORT}`));
