@@ -4,14 +4,6 @@ const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose');
 const data = require ('./models/data');
-//seed 
-const seedData = require('./models/seed.js');
-app.get('/home/seed' , (req,res) => {
-      data.deleteMany({} , (error, allData) => {});
-      data.create(seedData, (error, data) => {
-            res.redirect('/home');
-      })
-})
 
 //Database Connection
 mongoose.connect(process.env.DATABASE_URL,{ 
@@ -36,10 +28,11 @@ app.use(express.urlencoded({extended: true}))
 
 
 //I
-app.get('/home' ,(req,res) => {
-      res.render('index.ejs' , {
-      seedData: seedData,
-})});
+app.get('/home' , (req,res) => {
+      data.find({}, (error, allData) => {
+            res.render('index.ejs' , {
+                  data: allData
+            })})});
 
 
 //N
@@ -49,14 +42,14 @@ app.get('/home/new' , (req,res) => {
 //D
 //U
 //C
+
 //E
 //S
-app.get('/home/:indexOfSeedData' , (req,res) => {
-    res.render('show.ejs' , {
-          seedData: seedData[req.params.indexOfSeedData]
-    })});
-
-
+app.get('/home/:id' , (req,res) => {
+      data.findById(req.params.id, (err, foundData) => {
+            res.render('show.ejs' , {
+                  data: foundData
+            })})});
 
 
 

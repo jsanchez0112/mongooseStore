@@ -6,5 +6,5 @@ const dataSchema = new mongoose.Schema({
   price: {type: Number, required: true},
   qty: Number
 });
-const data = mongoose.model('Book' , dataSchema);
+const data = mongoose.model('Product' , dataSchema);
 module.exports = data;
