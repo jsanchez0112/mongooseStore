@@ -5,11 +5,22 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Document</title>
+      <style>
+            img { 
+                  width: 500px;
+                  height: 600px;
+            }
+      </style>
 </head>
 <body>
       <nav>
             <a href="/home">Back to the main page!</a>
             <h1><%= Data.name %></h1>
+            <h4>Description: <%= Data.description %></h4>
+            <h4>Price: $<%= Data.price %></h4>
+            <h4>QTY In Stock: <%= Data.qty %></h4>
+            <img src="<%= Data.img %>" alt="picture">
+
       </nav>
       
 </body>
