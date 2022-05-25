@@ -5,7 +5,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const Data = require ('./models/data');
 const methodOverride = require('method-override');
-const { populate } = require('./models/book.js');
+const { populate } = require('./models/data.js');
 const { redirect } = require('express/lib/response');
 
 //Database Connection
@@ -31,7 +31,7 @@ app.use(methodOverride('_method'))
 
 
 
-//I
+//Index
 app.get('/home' , (req,res) => {
       Data.find({}, (error, allData) => {
             res.render('index.ejs' , {
@@ -39,16 +39,17 @@ app.get('/home' , (req,res) => {
             })})});
 
 
-//N
+//New
 app.get('/home/new' , (req,res) => {
       res.render('new.ejs');
 })
-//D
+//Delete
 app.delete('/home/:id' , (req,res) => {
       Data.findByIdAndRemove(req.params.id, (err, data) => {
             res.redirect('/books')
       });})
-//U
+
+//Update
 app.put('/home/:id' , (req,res) => { 
       Data.findByIdAndUpdate(
             req.params.id,
@@ -61,21 +62,22 @@ app.put('/home/:id' , (req,res) => {
             })})
 
 
-//C
+//Create
 app.post('/home' , (req,res) => {
       Data.create(req.body, (error, createdData) => {
             res.redirect('/home')
+            
       })});
 
-//E
+//Edit
 app.get('/home/:id/edit' , (req,res) => {
       Data.findById(req.params.id, (error, foundData)=> {
             res.render('edit.ejs' , {
                   Data: foundData
             });});})
 
-            
-//S
+
+//Show
 app.get('/home/:id' , (req,res) => {
       Data.findById(req.params.id, (err, foundData) => {
             res.render('show.ejs' , {
