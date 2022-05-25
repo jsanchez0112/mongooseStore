@@ -1,0 +1,33 @@
+
+h1 {
+     text-align: center;
+}
+
+nav {
+      text-align: center;
+}
+body{ 
+      background-color: lightblue;
+
+}
+img  { 
+      width: 175px;
+      height: 200px;
+}
+.container{ 
+      width: 100%;
+
+}
+ul {
+      display: flex;
+}
+li{ 
+      padding-left: 30px;
+      padding-right: 30px;
+      list-style-type: none;
+}
+
+.table { 
+      display: table;
+      margin: 0 auto;
+}

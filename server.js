@@ -25,7 +25,7 @@ db.on('disconnected' , () => console.log('mongo disconnected'));
 //body parser middleware: give us access to req.body
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
-
+app.use(express.static(__dirname + '/public'));
 
 
 
@@ -46,7 +46,7 @@ app.get('/home/new' , (req,res) => {
 //Delete
 app.delete('/home/:id' , (req,res) => {
       Data.findByIdAndRemove(req.params.id, (err, data) => {
-            res.redirect('/books')
+            res.redirect('/home')
       });})
 
 //Update
@@ -61,8 +61,6 @@ app.put('/home/:id' , (req,res) => {
                   res.redirect(`/home/${req.params.id}`)
             })})
 
-
-//Create
 app.post('/home' , (req,res) => {
       Data.create(req.body, (error, createdData) => {
             res.redirect('/home')

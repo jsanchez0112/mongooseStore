@@ -5,11 +5,9 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Document</title>
+      <link rel="stylesheet" href="/styles.css">
       <style>
-            img  { 
-                  width: 175px;
-                  height: 200px;
-            }
+   
       </style>
 </head>
 <body>
@@ -18,6 +16,8 @@
        <nav>
       <a href="/home/new">Add an item!</a>
       </nav>
+      <div class="container">
+            <div class="table">
 <ul>
       <% Data.forEach(data => {%>
             <li>
@@ -32,15 +32,17 @@
       <form action="/home/<%= data._id %>?_method=DELETE" method="POST">
             <p><%= data.qty%></p>
       <input type="submit" value="DELETE ITEM">
+</form>
 
-
-
+<form action="/home/<%= Data.qty%>?_method=PUT" method="POST">
       <button class="buy">Buy</button>
-
-      </form>
+</form>
+    
 
       </li>
       <% }) %>
 </ul>
+</div>
+</div>
 </body>
 </html>
