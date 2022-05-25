@@ -8,12 +8,12 @@
 </head>
 <body>
       <h1>Edit Product Details</h1>
-      <form action="/home/<%= Data._id%>?_method=PUT" method="POSt">
+      <form action="/home/<%= Data._id%>?_method=PUT" method="POST">
       Name: <input type="text" name="name" value="<%= Data.name%>">
       Description: <input type="text" name="description" value="<%= Data.description%>">
       Image: <input type="text" name="img" value="<%= Data.img%>">
-      Price: <input type="text" name="price" value="<%= Data.price%>">
-      QTY: <input type="text" name="qty" value="<%= Data.qty%>">
+      Price: <input type="Number" name="price" value="<%= Data.price%>">
+      QTY: <input type="Number" name="qty" value="<%= Data.qty%>">
       <input type="submit" value="Submit Changes">
       
       </form>
