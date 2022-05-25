@@ -4,6 +4,9 @@ const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose');
 const Data = require ('./models/data');
+const methodOverride = require('method-override');
+const { populate } = require('./models/book.js');
+const { redirect } = require('express/lib/response');
 
 //Database Connection
 mongoose.connect(process.env.DATABASE_URL, { 
@@ -21,6 +24,7 @@ db.on('disconnected' , () => console.log('mongo disconnected'));
 //middleware
 //body parser middleware: give us access to req.body
 app.use(express.urlencoded({extended: true}))
+app.use(methodOverride('_method'))
 
 
 
@@ -40,7 +44,23 @@ app.get('/home/new' , (req,res) => {
       res.render('new.ejs');
 })
 //D
+app.delete('/home/:id' , (req,res) => {
+      Data.findByIdAndRemove(req.params.id, (err, data) => {
+            res.redirect('/books')
+      });})
 //U
+app.put('/home/:id' , (req,res) => { 
+      Data.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {
+                  new:true,
+            },
+            (error, updatedData) => {
+                  res.redirect(`/home/${req.params.id}`)
+            })})
+
+
 //C
 app.post('/home' , (req,res) => {
       Data.create(req.body, (error, createdData) => {
@@ -48,6 +68,13 @@ app.post('/home' , (req,res) => {
       })});
 
 //E
+app.get('/home/:id/edit' , (req,res) => {
+      Data.findById(req.params.id, (error, foundData)=> {
+            res.render('edit.ejs' , {
+                  Data: foundData
+            });});})
+
+            
 //S
 app.get('/home/:id' , (req,res) => {
       Data.findById(req.params.id, (err, foundData) => {
